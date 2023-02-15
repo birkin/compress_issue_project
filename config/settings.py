@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'x_app'
+    'x_app',
+    'compressor'
 ]
 
 MIDDLEWARE = [
@@ -115,6 +116,12 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
+
 STATIC_URL = os.environ['COMPRESS_ISSUE__STATIC_URL']
 STATIC_ROOT = os.environ['COMPRESS_ISSUE__STATIC_ROOT']
 
@@ -175,4 +182,17 @@ LOGGING = {
         #     'propagate': False
         # },
     }
+}
+
+## for django-compressor
+COMPRESS_ENABLED = True
+COMPRESS_CSS_HASHING_METHOD = 'content'
+COMPRESS_FILTERS = {
+    'css':[
+        'compressor.filters.css_default.CssAbsoluteFilter',
+        'compressor.filters.cssmin.rCSSMinFilter',
+    ],
+    'js':[
+        'compressor.filters.jsmin.JSMinFilter',
+    ]
 }
