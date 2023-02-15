@@ -73,7 +73,7 @@ export COMPRESS_ISSUE__CACHES_JSON='
 ## app
 ## ============================================================================
 
-export COMPRESS_ISSUE__README_URL="https://github.com/birkin/django_template_32_project/blob/main/README.md"
+export COMPRESS_ISSUE__README_URL="https://github.com/birkin/compress_issue_project/blob/main/README.md"
 
 ## auth -------------------------------------------------------------
 
