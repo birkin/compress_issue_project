@@ -1,0 +1,22 @@
+version: "3.9"
+   
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: compress_issue_project-web-container
+    volumes:
+      - ../:/compress_issue_project_stuff
+      - ../DBs:/compress_issue_project_stuff/DBs
+      - ../logs:/compress_issue_project_stuff/logs
+      - .:/compress_issue_project_stuff/code
+    ports:
+      - "8000:8000"
+
+    environment:
+      - COMPRESS_ISSUE__ENV_SETTINGS_PATH=config/settings_localdev_env.sh
+
+    env_file: ./config/settings_localdev_env.sh
+
+    command: /bin/bash -c "python manage.py runserver 0.0.0.0:8000"
